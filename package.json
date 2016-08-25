@@ -1,0 +1,19 @@
+{
+  "name": "culture.fm",
+  "version": "1.0.0",
+  "description": "streaming vaporwave to program too",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel McGraw",
+  "license": "ISC",
+  "dependencies": {
+    "soundcloud": "^3.1.2"
+  }
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12"
+  }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Culture.fm</title>
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
+  <!-- <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'> -->
+	<link rel="stylesheet" href="styles/temp.css" type="text/css">
+	<link rel="stylesheet" href="styles/reset.css" type="text/css">
+	<link rel="stylesheet" href="styles/glitch.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  </head>
+  <body>
+
+		<h1 id="header" class="glitch" data-text="AESTHETIC.FM"></h1>
+		<canvas id="tv"></canvas>
+		<div id="info">
+      <a id="track-url" target="_blank">
+				<span id="title"></span>
+			</a>
+			<br />
+			<a id="artist-url" target="_blank">
+				<span id="artist"></span>
+			</a>
+		</div>
+		<a href="#" title="Play video" id="play-pause" class="active"></a>
+		<div id="controls">
+			<button id="up">up</button>
+			<button id="down">down</button>
+			<button id="next">next</button>
+		</div>
+  	<script type="text/javascript">
+			var currentPlayer,
+			style = 'down',
+			title = document.getElementById('title'),
+			track_url = document.getElementById('track-url'),
+			artist = document.getElementById('artist'),
+			artist_url = document.getElementById('artist-url'),
+			dopeJams = {
+				'up':[276734908, 197210438, 142899310, 110752955, 153776202, 186565440, 54572729, 106874944, 106116264, 95920186,
+          95803374, 91341417, 95571253, 217360555, 216786615, 182947607, 154620413, 148599921, 99465678, 131872176,
+          139276040, 145336698, 147090296, 145588183, 143555633, 142135599, 139139242, 134244875, 132159342, 125452512,
+          56455571, 270587681, 99465678, 277716531, 277995442, 273931413, 268703571],
+				'down': [275832462, 250446614, 205192361, 187190981, 118140519, 118136546, 68675282, 225291169, 221363905, 58457371,
+          13023326, 109522887, 242136096, 239892774, 218526539, 182399080, 169725130, 169985580, 160781415, 154537207,
+          153382801, 152487707, 150799187, 149672417, 145142800, 145615089, 147736324, 80575896, 132945263, 144791429,
+          136246768, 136269299, 131075849, 86844648, 275095795, 263540398, 257578140, 277963701, 273452840, 167758970,
+          187558152]
+			};
+
+			function initSC() {
+				SC.initialize({
+	        client_id: 'b36e85bf651272bee51fa4c240a25fcd'
+	      });
+			}
+			function playNext() {
+				getTrack(getNextTrackID()).then(function(track){stream(track)});
+			}
+
+			function stream(track) {
+				SC.stream('/tracks/' + track.id).then(function(player){
+					// Hack for chrome (see https://github.com/soundcloud/soundcloud-javascript/issues/39)
+					if (player.options.protocols[0] === 'rtmp') {
+		        player.options.protocols.splice(0, 1);
+			    }
+
+					title.innerText = track.title;
+					track_url.href = track.permalink_url
+					artist.innerText = track.user.username;
+					artist_url.href = track.user.permalink_url
+
+					if (currentPlayer) {
+	            currentPlayer.pause();
+	          }
+	          currentPlayer = player;
+	          player.play();
+
+						player.on("finish", function() {
+							playNext();
+						});
+	        }).catch(function(){
+	          console.log(arguments);
+	        });
+			}
+
+			function getTrack(track_id) {
+				return SC.get('/tracks/' + track_id).then(function(track) {
+					return track
+				})
+			}
+
+			function getNextTrackID() {
+				var nextID = dopeJams[style].shift();
+				dopeJams[style].push(nextID);
+				return nextID;
+			}
+
+			// Fisher Yates (https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+			function shuffleTracks() {
+				var i, j, temp;
+				for (i = dopeJams[style].length - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * i);
+					temp = dopeJams[style][j];
+					dopeJams[style][j] = dopeJams[style][i];
+					dopeJams[style][i] = temp;
+				}
+			}
+
+    	function autorun(){
+				initSC();
+				shuffleTracks();
+				playNext();
+
+				document.getElementById('play-pause').addEventListener('click', function(e){
+					e.preventDefault();
+					if (this.classList.contains('active')) {
+						if (currentPlayer) {
+		          currentPlayer.pause();
+		        }
+						this.classList.remove('active');
+					}
+					else {
+						if (currentPlayer) {
+		          currentPlayer.play();
+		        }
+						this.classList.add('active');
+					}
+
+	      });
+
+				document.getElementById('next').addEventListener('click', function(e){
+					getTrack(getNextTrackID()).then(function(track){
+						stream(track);
+            if (!document.getElementById('play-pause').classList.contains('active')) {
+  						document.getElementById('play-pause').classList.add('active');
+  					}
+					});
+				});
+
+				document.getElementById('up').addEventListener('click', function(e){
+					style = 'up'
+	        if (currentPlayer) {
+	          currentPlayer.pause();
+	        }
+					shuffleTracks();
+					getTrack(getNextTrackID()).then(function(track){
+						stream(track);
+            if (!document.getElementById('play-pause').classList.contains('active')) {
+  						document.getElementById('play-pause').classList.add('active');
+  					}
+					});
+	      });
+
+				document.getElementById('down').addEventListener('click', function(e){
+					style = 'down'
+	        if (currentPlayer) {
+	          currentPlayer.pause();
+	        }
+					shuffleTracks();
+					getTrack(getNextTrackID()).then(function(track){
+						stream(track);
+            if (!document.getElementById('play-pause').classList.contains('active')) {
+  						document.getElementById('play-pause').classList.add('active');
+  					}
+					});
+	      });
+   		}
+
+			if (window.addEventListener) window.addEventListener("load", autorun, false);
+   		else if (window.attachEvent) window.attachEvent("onload", autorun);
+   		else window.onload = autorun;
+  	</script>
+  </body>
+</html>
