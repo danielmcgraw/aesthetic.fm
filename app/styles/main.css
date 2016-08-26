@@ -4,11 +4,10 @@ body {
 	background-color: black;
 }
 
-h1#header {
+#header {
 	position: absolute;
-	width: 800px;
-	margin-left: -400px;
-	left: 50%;
+	left: .5em;
+  height: 100%;
 }
 
 a {
@@ -18,7 +17,7 @@ a {
 
 button {
 	background-color:transparent;
-	border:1px solid #dcdcdc;
+	border:0 solid #dcdcdc;
 	display:inline-block;
 	cursor:pointer;
 	color:#666666;
@@ -42,12 +41,17 @@ button:focus {
 	outline: 0;
 }
 
+#info {
+  position: relative;
+  padding-top: 15em;
+  font-family: cursive;
+  width: 50em;
+  margin: 0 auto;
+}
+
 #controls {
-	position: absolute;
-	width: 600px;
-	margin-left: -300px;
-	bottom: 0;
-	left: 50%;
+	position: relative;
+  margin-top: 30em;
 }
 
 #play-pause {
