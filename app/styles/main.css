@@ -53,14 +53,15 @@ button:focus {
   width: 50em;
   height: 10%;
   margin: 0 auto;
+  display: block;
 }
 
 #controls {
-	position: absolute;
-  bottom: .5%;
-  width: 500px;
-  left: 50%;
-  margin-left: -250px;
+	position: relative;
+}
+
+#controls > #bottom > button {
+  color: #222
 }
 
 #play-pause {
@@ -70,7 +71,7 @@ button:focus {
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
   border-left: 60px solid #fff;
-  margin: 0 auto 50px auto;
+  margin: .5% auto 50px auto;
   position: relative;
   z-index: 1;
   transition: all 0.3s;

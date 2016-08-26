@@ -24,9 +24,15 @@
 		</div>
 		<a href="#" title="Play video" id="play-pause" class="active"></a>
 		<div id="controls">
-			<button id="up">up</button>
-			<button id="down">down</button>
-			<button id="next">next</button>
+      <div id="top">
+        <button id="up">up</button>
+  			<button id="down">down</button>
+  			<button id="next">next</button>
+      </div>
+      <div id="bottom">
+        <button id="foreground">foreground</button>
+        <button id="background">background</button>
+      </div>
 		</div>
   	<script type="text/javascript">
     var canvas = document.getElementById('header')
@@ -208,6 +214,18 @@
   						document.getElementById('play-pause').classList.add('active');
   					}
 					});
+	      });
+
+        document.getElementById('foreground').addEventListener('click', function(e){
+	        if (currentPlayer) {
+	          currentPlayer.setVolume(1);
+	        }
+	      });
+
+        document.getElementById('background').addEventListener('click', function(e){
+	        if (currentPlayer) {
+	          currentPlayer.setVolume(0.2);
+	        }
 	      });
    		}
 
