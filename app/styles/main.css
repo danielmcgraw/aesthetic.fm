@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  min-height: 600px;
+}
 body {
   font-family: 'Bungee', cursive;
   text-align: center;
@@ -43,15 +48,19 @@ button:focus {
 
 #info {
   position: relative;
-  padding-top: 15em;
+  padding-top: 15%;
   font-family: cursive;
   width: 50em;
+  height: 10%;
   margin: 0 auto;
 }
 
 #controls {
-	position: relative;
-  margin-top: 30em;
+	position: absolute;
+  bottom: .5%;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
 }
 
 #play-pause {
@@ -61,7 +70,7 @@ button:focus {
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
   border-left: 60px solid #fff;
-  margin: 100px auto 50px auto;
+  margin: 0 auto 50px auto;
   position: relative;
   z-index: 1;
   transition: all 0.3s;
