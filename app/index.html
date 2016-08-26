@@ -58,35 +58,35 @@
       };
 
       var init = function() {
-      clearInterval(glitchInterval);
-      canvas.width = w = img.width;
-      offset = w * .1;
-      canvas.height = h = window.innerHeight;
-      glitchInterval = setInterval(function() {
-        clear();
-        context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
-        setTimeout(glitchImg, randInt(2500, 10000));
-      }, 2000);
+        clearInterval(glitchInterval);
+        canvas.width = w = img.width;
+        offset = w * .1;
+        canvas.height = h = window.innerHeight;
+        glitchInterval = setInterval(function() {
+          clear();
+          context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+          setTimeout(glitchImg, randInt(2500, 10000));
+        }, 2000);
       };
 
       var clear = function() {
-      context.rect(0, 0, w, h);
-      context.fill();
+        context.rect(0, 0, w, h);
+        context.fill();
       };
 
       var glitchImg = function() {
-      for (var i = 0; i < randInt(1, 13); i++) {
-        var x = Math.random() * w;
-        var y = Math.random() * h;
-        var spliceWidth = w - x;
-        var spliceHeight = randInt(5, h / 3);
-        context.drawImage(canvas, 0, y, spliceWidth, spliceHeight, x, y, spliceWidth, spliceHeight);
-        context.drawImage(canvas, spliceWidth, y, x, spliceHeight, 0, y, x, spliceHeight);
-      }
+        for (var i = 0; i < randInt(1, 13); i++) {
+          var x = Math.random() * w;
+          var y = Math.random() * h;
+          var spliceWidth = w - x;
+          var spliceHeight = randInt(5, h / 3);
+          context.drawImage(canvas, 0, y, spliceWidth, spliceHeight, x, y, spliceWidth, spliceHeight);
+          context.drawImage(canvas, spliceWidth, y, x, spliceHeight, 0, y, x, spliceHeight);
+        }
       };
 
       var randInt = function(a, b) {
-      return ~~(Math.random() * (b - a) + a);
+        return ~~(Math.random() * (b - a) + a);
       };
 
 			var currentPlayer,
