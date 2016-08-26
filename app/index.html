@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8">
     <title>AESTHETIC.FM</title>
-  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
-  <!-- <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'> -->
-	<link rel="stylesheet" href="styles/main.css" type="text/css">
-	<link rel="stylesheet" href="styles/reset.css" type="text/css">
-	<link rel="stylesheet" href="styles/glitch.css" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  	<link rel="stylesheet" href="styles/main.css" type="text/css">
+  	<link rel="stylesheet" href="styles/reset.css" type="text/css">
+  	<link rel="stylesheet" href="styles/glitch.css" type="text/css">
+  	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <meta name="apple-mobile-web-app-title" content="AESTHETIC.FM">
+    <meta name="application-name" content="AESTHETIC.FM">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
   </head>
   <body>
 		<canvas id="header">AESTHETIC.FM</canvas>
@@ -43,7 +51,7 @@
       , offset
       , glitchInterval;
 
-      img.src = '../images/AESTHETIC.png';
+      img.src = 'images/AESTHETIC.png';
       img.onload = function() {
       init();
       window.onresize = init;
