@@ -7,6 +7,10 @@ body {
   font-family: 'Bungee', cursive;
   text-align: center;
 	background-color: black;
+  background: -webkit-linear-gradient(70deg, black 55%, purple, pink);
+  background: -moz-linear-gradient(70deg, black 55%, purple, pink);
+  background: -o-linear-gradient(70deg, black 55%, purple, pink);
+  background: linear-gradient(70deg, black 55%, purple, pink);
 }
 
 #header {
