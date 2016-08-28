@@ -11,6 +11,7 @@
   	<link rel="stylesheet" href="styles/main.css" type="text/css">
   	<link rel="stylesheet" href="styles/reset.css" type="text/css">
   	<link rel="stylesheet" href="styles/glitch.css" type="text/css">
+    <link rel="stylesheet" href="styles/player.css" type="text/css">
   	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
     <meta name="apple-mobile-web-app-title" content="AESTHETIC.FM">
     <meta name="application-name" content="AESTHETIC.FM">
@@ -30,12 +31,16 @@
 				<span id="artist"></span>
 			</a>
 		</div>
-		<a href="#" title="Play video" id="play-pause" class="active"></a>
+    <div id="playerControls">
+      <div id="play"></div>
+  		<div id="pause"></div>
+  		<div id="next"></div>
+    </div>
 		<div id="controls">
       <div id="top">
-        <button id="up">up</button>
-  			<button id="down">down</button>
-  			<button id="next">next</button>
+        <button id="future">future</button>
+  			<button id="vapor">vapor</button>
+        <button id="synth">synth</button>
       </div>
       <div id="bottom">
         <button id="foreground">foreground</button>
@@ -90,21 +95,22 @@
       };
 
 			var currentPlayer,
-			style = 'down',
+			style = 'vapor',
 			title = document.getElementById('title'),
 			track_url = document.getElementById('track-url'),
 			artist = document.getElementById('artist'),
 			artist_url = document.getElementById('artist-url'),
 			dopeJams = {
-				'up':[276734908, 197210438, 142899310, 110752955, 153776202, 186565440, 54572729, 106874944, 106116264, 95920186,
+				'future':[276734908, 197210438, 142899310, 110752955, 153776202, 186565440, 54572729, 106874944, 106116264, 95920186,
           95803374, 91341417, 95571253, 217360555, 216786615, 182947607, 154620413, 148599921, 99465678, 131872176,
           139276040, 145336698, 147090296, 145588183, 143555633, 142135599, 139139242, 134244875, 132159342, 125452512,
           56455571, 270587681, 99465678, 277716531, 277995442, 273931413, 268703571],
-				'down': [275832462, 250446614, 205192361, 187190981, 118140519, 118136546, 68675282, 225291169, 221363905, 58457371,
+				'vapor': [275832462, 250446614, 205192361, 187190981, 118140519, 118136546, 68675282, 225291169, 221363905, 58457371,
           13023326, 109522887, 242136096, 239892774, 218526539, 182399080, 169725130, 169985580, 160781415, 154537207,
           153382801, 152487707, 150799187, 149672417, 145142800, 145615089, 147736324, 80575896, 132945263, 144791429,
           136246768, 136269299, 131075849, 86844648, 275095795, 263540398, 257578140, 277963701, 273452840, 167758970,
-          187558152]
+          187558152],
+        'synth': [260810584, 260809924, 200214795, 194135981, 193686403, 268422931, 263901667, 220271009, 165149696]
 			};
 
 			function initSC() {
@@ -129,18 +135,18 @@
 					artist_url.href = track.user.permalink_url
 
 					if (currentPlayer) {
-	            currentPlayer.pause();
-	          }
-	          currentPlayer = player;
-	          player.play();
+            currentPlayer.pause();
+          }
+          currentPlayer = player;
+          player.play();
 
-						player.on("finish", function() {
-							playNext();
-						});
-	        }).catch(function(){
-	          console.log(arguments);
-            playNext();
-	        });
+					player.on("finish", function() {
+						playNext();
+					});
+        }).catch(function(){
+          console.log(arguments);
+          playNext();
+        });
 			}
 
 			function getTrack(track_id) {
@@ -171,34 +177,34 @@
 				shuffleTracks();
 				playNext();
 
-				document.getElementById('play-pause').addEventListener('click', function(e){
-					e.preventDefault();
-					if (this.classList.contains('active')) {
-						if (currentPlayer) {
-		          currentPlayer.pause();
-		        }
-						this.classList.remove('active');
-					}
-					else {
-						if (currentPlayer) {
-		          currentPlayer.play();
-		        }
-						this.classList.add('active');
-					}
+				document.getElementById('play').addEventListener('click', function(){
+					console.log("ASDF");
+					if (currentPlayer) {
+	          currentPlayer.play();
+	        }
+          document.getElementById('pause').style.display = 'inline-block';
+          this.style.display = 'none';
+	      });
 
+        document.getElementById('pause').addEventListener('click', function(e){
+					e.preventDefault();
+					if (currentPlayer) {
+	          currentPlayer.pause();
+	        }
+          document.getElementById('play').style.display = 'inline-block';
+          this.style.display = 'none';
 	      });
 
 				document.getElementById('next').addEventListener('click', function(e){
 					getTrack(getNextTrackID()).then(function(track){
 						stream(track);
-            if (!document.getElementById('play-pause').classList.contains('active')) {
-  						document.getElementById('play-pause').classList.add('active');
-  					}
+            document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('play').style.display = 'none';
 					});
 				});
 
-				document.getElementById('up').addEventListener('click', function(e){
-					style = 'up'
+				document.getElementById('future').addEventListener('click', function(e){
+					style = 'future'
 	        if (currentPlayer) {
 	          currentPlayer.pause();
 	        }
@@ -211,8 +217,22 @@
 					});
 	      });
 
-				document.getElementById('down').addEventListener('click', function(e){
-					style = 'down'
+				document.getElementById('vapor').addEventListener('click', function(e){
+					style = 'vapor'
+	        if (currentPlayer) {
+	          currentPlayer.pause();
+	        }
+					shuffleTracks();
+					getTrack(getNextTrackID()).then(function(track){
+						stream(track);
+            if (!document.getElementById('play-pause').classList.contains('active')) {
+  						document.getElementById('play-pause').classList.add('active');
+  					}
+					});
+	      });
+
+        document.getElementById('synth').addEventListener('click', function(e){
+					style = 'synth'
 	        if (currentPlayer) {
 	          currentPlayer.pause();
 	        }
