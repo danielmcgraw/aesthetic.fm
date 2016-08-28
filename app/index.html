@@ -110,7 +110,9 @@
           153382801, 152487707, 150799187, 149672417, 145142800, 145615089, 147736324, 80575896, 132945263, 144791429,
           136246768, 136269299, 131075849, 86844648, 275095795, 263540398, 257578140, 277963701, 273452840, 167758970,
           187558152],
-        'synth': [260810584, 260809924, 200214795, 194135981, 193686403, 268422931, 263901667, 220271009, 165149696]
+        'synth': [260810584, 260809924, 200214795, 194135981, 193686403, 268422931, 263901667, 220271009, 165149696, 202846016,
+          176113522, 161968259, 143594542, 68458411, 87265832, 83530123, 63747062, 62971291, 117107427, 121117722,
+          158452264, 214351268, 90129944, 214977712, 210718586, 177497907, 10793953, 5692949, 5692721]
 			};
 
 			function initSC() {
@@ -211,9 +213,8 @@
 					shuffleTracks();
 					getTrack(getNextTrackID()).then(function(track){
 						stream(track);
-            if (!document.getElementById('play-pause').classList.contains('active')) {
-  						document.getElementById('play-pause').classList.add('active');
-  					}
+            document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('play').style.display = 'none';
 					});
 	      });
 
@@ -225,9 +226,8 @@
 					shuffleTracks();
 					getTrack(getNextTrackID()).then(function(track){
 						stream(track);
-            if (!document.getElementById('play-pause').classList.contains('active')) {
-  						document.getElementById('play-pause').classList.add('active');
-  					}
+            document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('play').style.display = 'none';
 					});
 	      });
 
@@ -239,9 +239,8 @@
 					shuffleTracks();
 					getTrack(getNextTrackID()).then(function(track){
 						stream(track);
-            if (!document.getElementById('play-pause').classList.contains('active')) {
-  						document.getElementById('play-pause').classList.add('active');
-  					}
+            document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('play').style.display = 'none';
 					});
 	      });
 
