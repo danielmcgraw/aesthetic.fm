@@ -13,11 +13,11 @@ html {
 body {
   font-family: 'Bungee', cursive;
   text-align: center;
-  background-image: -webkit-linear-gradient(0deg, transparent 0px, #000 2px, transparent 4px), -webkit-linear-gradient(90deg, transparent 0px, #000 2px, transparent 4px);
-  background-image: -moz-linear-gradient(0deg, transparent 0px, #000 2px, transparent 4px), -moz-linear-gradient(90deg, transparent 0px, #000 2px, transparent 4px);
-  background-image: -o-linear-gradient(0deg, transparent 0px, #000 2px, transparent 4px), -o-linear-gradient(90deg, transparent 0px, #000 2px, transparent 4px);
-  background-image: linear-gradient(0deg, transparent 0px, #000 2px, transparent 4px), linear-gradient(90deg, transparent 0px, #000 2px, transparent 4px);
-  background-size: 64px 64px;
+  background-image: -webkit-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -webkit-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
+  background-image: -moz-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -moz-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
+  background-image: -o-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -o-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
+  background-image: linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
+  background-size: 15px 15px;
 }
 
 #header {
