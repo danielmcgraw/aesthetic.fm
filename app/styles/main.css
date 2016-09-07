@@ -13,10 +13,10 @@ html {
 body {
   font-family: 'Bungee', cursive;
   text-align: center;
-  background-image: -webkit-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -webkit-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
-  background-image: -moz-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -moz-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
-  background-image: -o-linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), -o-linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
-  background-image: linear-gradient(0deg, transparent 0px, #000 1px, transparent 0px), linear-gradient(90deg, transparent 0px, #000 1px, transparent 0px);
+  background-image: -webkit-linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(135deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+  background-image: -moz-linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(135deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+  background-image: -o-linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(135deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+  background-image: linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(135deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
   background-size: 15px 15px;
 }
 
