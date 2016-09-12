@@ -8,17 +8,18 @@
     <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="images/favicons/manifest.json">
     <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+
   	<link rel="stylesheet" href="styles/main.css" type="text/css">
-  	<link rel="stylesheet" href="styles/reset.css" type="text/css">
   	<link rel="stylesheet" href="styles/glitch.css" type="text/css">
     <link rel="stylesheet" href="styles/player.css" type="text/css">
-  	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+
     <meta name="apple-mobile-web-app-title" content="AESTHETIC.FM">
     <meta name="application-name" content="AESTHETIC.FM">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-  	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
   </head>
   <body>
 		<canvas id="header">AESTHETIC.FM</canvas>
@@ -38,9 +39,11 @@
     </div>
 		<div id="controls">
       <div id="top">
-        <button id="future">future</button>
-  			<button id="vapor">vapor</button>
-        <button id="synth">synth</button>
+        <button id="future_funk">future funk</button>
+  			<button id="vaporwave">vaporwave</button>
+        <button id="synthwave">synthwave</button>
+        <button id="witch_house">witch house</button>
+        <button id="vaportrap">vaportrap</button>
       </div>
       <div id="bottom">
         <button id="foreground">foreground</button>
@@ -95,30 +98,30 @@
       };
 
 			var currentPlayer,
-			style = 'vapor',
+			style = document.cookie.split("=")[1] || 'vaporwave',
 			title = document.getElementById('title'),
 			track_url = document.getElementById('track-url'),
 			artist = document.getElementById('artist'),
 			artist_url = document.getElementById('artist-url'),
 			dopeJams = {
-				'future':[228702676, 273861740, 271070340, 257929835, 257929761, 257929521, 249430259, 248674549, 245788445, 247124314,
+				'future_funk':[228702676, 273861740, 271070340, 257929835, 257929761, 257929521, 249430259, 248674549, 245788445, 247124314,
           244019987, 239441355, 237726653, 229653831, 226621697, 211985542, 208682059, 207184825, 192265377, 186401670,
           234581596, 199784230, 137997560, 222803509, 214290458, 213997128, 212989440, 211982337, 201789785, 196389018,
           177776492, 171605217, 171889371, 169484624, 166382957, 162763652, 153042528, 150176967, 151608032, 144774533,
           140721478, 138418207, 277428915, 202719340, 237400959, 277716531],
-				'vapor': [118151791, 118147658, 118140519, 118136546, 118132085, 68675282, 58457371, 54572729, 268535706, 278533491,
+				'vaporwave': [118151791, 118147658, 118140519, 118136546, 118132085, 68675282, 58457371, 54572729, 268535706, 278533491,
           225521156, 226817178, 222969126, 152312524, 148924485, 127339421, 125452512, 74488535, 70744541, 70254345,
           156920476, 275527423, 276076648, 265198202, 250726698, 273700519, 273853563, 279476410, 271779810, 267205159,
           276336658, 275976910, 274354942, 275095795, 274492755, 273452840, 272903454, 270827341, 270833588, 270587681,
           269451542, 267752311, 267370537, 248129916, 266331038, 265420364],
-        'synth': [260810584, 260809924, 200214795, 194135981, 193686403, 268422931, 263901667, 220271009, 165149696, 202846016,
+        'synthwave': [260810584, 260809924, 200214795, 194135981, 193686403, 268422931, 263901667, 220271009, 165149696, 202846016,
           176113522, 161968259, 143594542, 68458411, 87265832, 83530123, 63747062, 62971291, 117107427, 121117722,
           158452264, 214351268, 90129944, 214977712, 210718586, 177497907, 10793953, 5692949, 5692721, 45553155,
           77077822, 185944477, 249208621, 153167227, 239105216, 174827046, 121926673, 118631874, 118065186, 116969880,
           104307698, 60397873, 60154417, 35814195, 35814027, 35813046, 21297434, 263667781, 248917586, 248782156,
-          248917559, 241949723]
-
-
+          248917559, 241949723],
+        'witch_house': [],
+        'vaportrap': []
 			};
 
 			function initSC() {
@@ -181,6 +184,19 @@
 				}
 			}
 
+      function switchStyles() {
+        document.cookie = "style=" + style + "; path=/";
+        if (currentPlayer) {
+          currentPlayer.pause();
+        }
+        shuffleTracks();
+        getTrack(getNextTrackID()).then(function(track){
+          stream(track);
+          document.getElementById('pause').style.display = 'inline-block';
+          document.getElementById('play').style.display = 'none';
+        });
+      }
+
     	function autorun(){
 				initSC();
 				shuffleTracks();
@@ -211,43 +227,29 @@
 					});
 				});
 
-				document.getElementById('future').addEventListener('click', function(e){
-					style = 'future'
-	        if (currentPlayer) {
-	          currentPlayer.pause();
-	        }
-					shuffleTracks();
-					getTrack(getNextTrackID()).then(function(track){
-						stream(track);
-            document.getElementById('pause').style.display = 'inline-block';
-            document.getElementById('play').style.display = 'none';
-					});
+				document.getElementById('future_funk').addEventListener('click', function(e){
+					style = 'future_funk';
+	        switchStyles();
 	      });
 
-				document.getElementById('vapor').addEventListener('click', function(e){
-					style = 'vapor'
-	        if (currentPlayer) {
-	          currentPlayer.pause();
-	        }
-					shuffleTracks();
-					getTrack(getNextTrackID()).then(function(track){
-						stream(track);
-            document.getElementById('pause').style.display = 'inline-block';
-            document.getElementById('play').style.display = 'none';
-					});
+				document.getElementById('vaporwave').addEventListener('click', function(e){
+					style = 'vaporwave';
+	        switchStyles();
 	      });
 
-        document.getElementById('synth').addEventListener('click', function(e){
-					style = 'synth'
-	        if (currentPlayer) {
-	          currentPlayer.pause();
-	        }
-					shuffleTracks();
-					getTrack(getNextTrackID()).then(function(track){
-						stream(track);
-            document.getElementById('pause').style.display = 'inline-block';
-            document.getElementById('play').style.display = 'none';
-					});
+        document.getElementById('synthwave').addEventListener('click', function(e){
+					style = 'synthwave';
+	        switchStyles();
+	      });
+
+        document.getElementById('witch_house').addEventListener('click', function(e){
+					style = 'witch_house';
+	        switchStyles();
+	      });
+
+        document.getElementById('vaportrap').addEventListener('click', function(e){
+					style = 'vaportrap';
+	        switchStyles();
 	      });
 
         document.getElementById('foreground').addEventListener('click', function(e){

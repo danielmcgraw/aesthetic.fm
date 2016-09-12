@@ -60,9 +60,10 @@ button:focus {
 #info {
   position: relative;
   padding-top: 15%;
+  padding-bottom: 1%;
   font-family: cursive;
   width: 50em;
-  height: 75px;
+  /*height: 75px;*/
   margin: 0 auto;
   display: block;
 }
